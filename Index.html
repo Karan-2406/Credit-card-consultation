@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ascend | Credit Card Consultation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ascendPurple: '#6F57FF',
+                        midnight: '#1E2F39',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FFFFFF;
+            color: #1E2F39;
+            -webkit-font-smoothing: antialiased;
+        }
+        .step {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        .step.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Premium Box Styling for ALL inputs with forced padding */
+        input[type="text"], textarea {
+            width: 100%;
+            background: #FAFAFA;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 16px 20px !important;
+            font-size: 1.125rem;
+            font-family: inherit !important;
+            color: #1E2F39;
+            outline: none;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            margin-top: 4px;
+        }
+        
+        input[type="text"]:focus, textarea:focus {
+            border-color: #6F57FF;
+            background: #FFFFFF;
+            box-shadow: 0 0 0 1px #6F57FF;
+        }
+        
+        textarea {
+            resize: vertical;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            font-size: 1.125rem;
+            margin-bottom: 0.25rem;
+            margin-top: 2rem;
+            color: #1E2F39;
+            line-height: 1.4;
+        }
+        .helper-text {
+            font-size: 0.875rem;
+            color: #6B7280;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+            font-weight: 300;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+
+    <div class="w-full max-w-2xl bg-white p-8 sm:p-12">
+        
+        <div class="mb-12 flex justify-center">
+            <a href="https://joinascend.com/" target="_blank" class="hover:opacity-80 transition-opacity">
+                <img src="https://cdn.prod.website-files.com/68c18412b5bd4d5f7e06ac3a/695aa1c31352f5ad5b14d0ff_logo-1-midnight.png" alt="Ascend Logo" class="h-8 object-contain">
+            </a>
+        </div>
+
+        <form id="ascendForm" class="space-y-8">
+
+            <div class="step active" id="step1">
+                
+                <div class="mb-10">
+                    <h1 class="text-4xl font-light mb-6 text-midnight text-center">Credit Card Consultation</h1>
+                    <p class="text-gray-500 font-light mb-6 leading-relaxed text-sm">
+                        At Ascend, we have a strict anti-SPAM policy. Your information is never rented or sold. Rest assured, all your details are securely stored, and access is strictly limited to relevant team members based on necessity. For a comprehensive understanding of our privacy measures, you can view our complete privacy policy by clicking <a href="https://www.joinascend.com/privacy-policy/" target="_blank" class="text-ascendPurple hover:underline font-medium">here</a>.
+                    </p>
+                    
+                    <div class="border-l-2 border-gray-200 pl-5 my-6">
+                        <p class="text-midnight font-medium mb-3 leading-relaxed">
+                            I encourage you to fill out as much of this form as you can in advance of our call.
+                        </p>
+                        <p class="text-midnight font-medium leading-relaxed">
+                            Even if you don't have the time to fill the entire form out, thinking about all the questions will make it more likely you leave with concrete personalized steps to increase your return on spend.
+                        </p>
+                    </div>
+                </div>
+
+                <h2 class="text-2xl font-light mb-6 text-midnight border-b border-gray-100 pb-4">Personal Info</h2>
+
+                <label for="fullName">What is your full name? *</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="occupation">Occupation/Business Type</label>
+                <div class="helper-text">I.e. I'm the the principal of my family office or I'm the CEO of a construction software business</div>
+                <input type="text" id="occupation" name="occupation">
+            </div>
+
+            <div class="step" id="step2">
+                <h2 class="text-2xl font-light mb-6 text-midnight border-b border-gray-100 pb-4">Your Spend Profile</h2>
+
+                <label for="currentCards">What are all the credit cards you currently have? *</label>
+                <div class="helper-text">I.e. Amex Personal Platinum and Chase Ink Business Preferred</div>
+                <textarea id="currentCards" name="currentCards" rows="2" required></textarea>
+
+                <label for="annualSpend">What do you spend on credit cards annually (personal + business if you control one or more businesses)? *</label>
+                <div class="helper-text">I.e. I personally spend $20k a month and my businesses spend $250k per month</div>
+                <textarea id="annualSpend" name="annualSpend" rows="2" required></textarea>
+
+                <label for="spendCategories">What do you/your business spend money on?</label>
+                <div class="helper-text">I.e. of the $20k per month in personal spend, about $5k of that is flights, $5k is hotels, $3k is dining, and the rest is broken up into many categories I'm not sure of. For my business, we spend $100k a month on company travel with probably 1/3 of that being flights, etc.</div>
+                <textarea id="spendCategories" name="spendCategories" rows="4"></textarea>
+            </div>
+
+            <div class="step" id="step3">
+                <h2 class="text-2xl font-light mb-6 text-midnight border-b border-gray-100 pb-4">Effort & Flexibility</h2>
+
+                <label for="timeEffort">How much time and effort are you/people you work with willing to spend on getting tons of value from you credit card points? *</label>
+                <div class="helper-text">I.e. I'm willing to spend a few hours up front, and I can have my assistant do whatever is needed on an ongoing basis</div>
+                <textarea id="timeEffort" name="timeEffort" rows="3" required></textarea>
+
+                <label for="flexibility">How flexibly and last minute do you travel?</label>
+                <div class="helper-text">I.e. I always travel last minute for work, but for my family vacations we like to plan these in advance</div>
+                <textarea id="flexibility" name="flexibility" rows="3"></textarea>
+            </div>
+
+            <div class="step" id="step4">
+                <h2 class="text-2xl font-light mb-6 text-midnight border-b border-gray-100 pb-4">Travel Goals & Aspirations</h2>
+
+                <label for="longHaulGoals">What are your and your family travel goals/vacations that involve long haul business or first class over the next 1-2 years?</label>
+                <div class="helper-text">I.e. We want to go on a three week trip to Japan around cherry blossom season</div>
+                <textarea id="longHaulGoals" name="longHaulGoals" rows="3"></textarea>
+
+                <label for="commonRoutes">What are common domestic or international travel routes for yourself you would want to use miles and points for regularly?</label>
+                <div class="helper-text">I.e. I'll be going from NYC to London often last minute and prefer star alliance</div>
+                <textarea id="commonRoutes" name="commonRoutes" rows="3"></textarea>
+
+                <label for="luxuryHotels">How often do you stay at luxury hotels and which ones if any regular ones? What goals (if any) do you have to increase this?</label>
+                <div class="helper-text">I.e. I stay at luxury hotels about 20 nights a year, typically Marriot but sometimes Hyatt largely for work. Next year I hope to stay at least a couple weeks at some of the world's top boutique hotels when traveling to Thailand and Mexico</div>
+                <textarea id="luxuryHotels" name="luxuryHotels" rows="4"></textarea>
+
+                <label for="otherGoals">Any other aspirational travel goals I should know about?</label>
+                <textarea id="otherGoals" name="otherGoals" rows="2"></textarea>
+            </div>
+
+            <div class="pt-10 flex justify-between items-center mt-8">
+                <button type="button" id="prevBtn" class="hidden text-gray-400 hover:text-midnight font-mono text-sm tracking-widest uppercase transition-colors rounded-lg" onclick="nextPrev(-1)">Back</button>
+                
+                <div id="stepIndicator" class="text-xs font-mono text-gray-400 tracking-widest">STEP 1 OF 4</div>
+                
+                <button type="button" id="nextBtn" class="bg-ascendPurple text-white px-8 py-3 font-mono text-sm tracking-widest uppercase hover:bg-opacity-90 transition-all rounded-lg" onclick="nextPrev(1)">Continue</button>
+            </div>
+
+            <div id="successMessage" class="hidden text-center py-12">
+                <svg class="w-16 h-16 text-ascendPurple mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <h2 class="text-2xl font-light text-midnight mb-4">Profile Submitted</h2>
+                <p class="text-gray-500 font-light">Thank you. An Ascend concierge will review your optimization profile and be in touch shortly.</p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let currentTab = 0;
+        showTab(currentTab);
+
+        function showTab(n) {
+            let x = document.getElementsByClassName("step");
+            for (let i = 0; i < x.length; i++) {
+                x[i].classList.remove("active");
+            }
+            x[n].classList.add("active");
+            
+            document.getElementById("stepIndicator").innerHTML = "STEP " + (n + 1) + " OF " + x.length;
+            
+            if (n == 0) {
+                document.getElementById("prevBtn").classList.add("hidden");
+            } else {
+                document.getElementById("prevBtn").classList.remove("hidden");
+            }
+            
+            if (n == (x.length - 1)) {
+                document.getElementById("nextBtn").innerHTML = "Submit";
+            } else {
+                document.getElementById("nextBtn").innerHTML = "Continue";
+            }
+        }
+
+        function nextPrev(n) {
+            let x = document.getElementsByClassName("step");
+            if (n == 1 && !validateForm()) return false;
+            
+            if (currentTab + n >= x.length) {
+                submitForm();
+                return false;
+            }
+            currentTab = currentTab + n;
+            showTab(currentTab);
+        }
+
+        function validateForm() {
+            let x, y, i, valid = true;
+            x = document.getElementsByClassName("step");
+            y = x[currentTab].querySelectorAll("input[required], textarea[required]");
+            
+            for (i = 0; i < y.length; i++) {
+                if (y[i].value.trim() == "") {
+                    y[i].style.borderColor = "#ef4444";
+                    valid = false;
+                } else {
+                    y[i].style.borderColor = "#E5E7EB";
+                }
+            }
+            return valid;
+        }
+
+        function submitForm() {
+            document.getElementById("nextBtn").classList.add("hidden");
+            document.getElementById("prevBtn").classList.add("hidden");
+            document.getElementById("stepIndicator").classList.add("hidden");
+            
+            let steps = document.getElementsByClassName("step");
+            for (let i = 0; i < steps.length; i++) {
+                steps[i].classList.remove("active");
+            }
+            document.getElementById("successMessage").classList.remove("hidden");
+            document.getElementById("successMessage").classList.add("active");
+
+            const form = document.getElementById('ascendForm');
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            // Make.com Webhook URL correctly configured
+            const webhookUrl = 'https://hook.us2.make.com/7b82afsq37ky4m4q1oxmg5mgqcbu91g1';
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            }).catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
